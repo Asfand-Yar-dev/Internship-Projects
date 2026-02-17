@@ -1,0 +1,25 @@
+# AI Powered Voice Bot - Requirements
+# =====================================
+
+# Core Pipecat framework
+pipecat-ai[silero]>=0.0.30
+
+# For local audio processing
+sounddevice>=0.4.6
+numpy>=1.24.0
+
+# For HTTP requests to LM Studio
+aiohttp>=3.9.0
+
+# Environment variables
+python-dotenv>=1.0.0
+
+
+# Optional: Edge TTS (free, no API key)
+# pip install pipecat-ai[edge-tts]
+
+# Optional: For WebRTC support
+# pip install pipecat-ai[webrtc]
+
+# Optional: Whisper for local STT
+# pip install openai-whisper
