@@ -113,9 +113,6 @@ async def handle_index(request):
         .mic-btn.speaking { background: #22c55e; }
         @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
         .voice-status { margin-top: 15px; color: #9ca3af; }
-        .input-row { display: flex; gap: 10px; margin-top: 20px; }
-        .input-row input { flex: 1; padding: 12px; border: none; border-radius: 8px; background: #16213e; color: white; }
-        .input-row button { padding: 12px 20px; border: none; border-radius: 8px; background: #4f46e5; color: white; cursor: pointer; }
         .settings { text-align: center; margin-top: 15px; color: #9ca3af; }
         .settings label { margin: 0 10px; cursor: pointer; }
         .history-info { text-align: center; margin-top: 10px; font-size: 12px; color: #6b7280; }
@@ -140,18 +137,12 @@ async def handle_index(request):
             <span id="historyCount">Messages: 0</span>
             <button class="clear-btn" id="clearBtn">Clear History</button>
         </div>
-        <div class="input-row">
-            <input type="text" id="textInput" placeholder="Or type here..." disabled>
-            <button id="sendBtn" disabled>Send</button>
-        </div>
     </div>
     <script>
         const chat = document.getElementById('chat');
         const micBtn = document.getElementById('micBtn');
         const status = document.getElementById('status');
         const voiceStatus = document.getElementById('voiceStatus');
-        const textInput = document.getElementById('textInput');
-        const sendBtn = document.getElementById('sendBtn');
         const autoSpeak = document.getElementById('autoSpeak');
         const continuousMode = document.getElementById('continuousMode');
         const historyCount = document.getElementById('historyCount');
@@ -300,8 +291,6 @@ loadVoice();
                 status.textContent = 'Connected';
                 status.className = 'status connected';
                 micBtn.disabled = false;
-                textInput.disabled = false;
-                sendBtn.disabled = false;
                 voiceStatus.textContent = continuousMode.checked ? 'Click mic to start continuous mode' : 'Click mic to speak';
             };
             
@@ -321,8 +310,6 @@ loadVoice();
                 status.textContent = 'Disconnected - Reconnecting...';
                 status.className = 'status disconnected';
                 micBtn.disabled = true;
-                textInput.disabled = true;
-                sendBtn.disabled = true;
                 setTimeout(connect, 3000);
             };
         }
@@ -334,8 +321,6 @@ loadVoice();
         };
         
         clearBtn.onclick = clearHistory;
-        sendBtn.onclick = () => { sendMessage(textInput.value); textInput.value = ''; };
-        textInput.onkeypress = (e) => { if (e.key === 'Enter') { sendMessage(textInput.value); textInput.value = ''; } };
         
         connect();
     </script>
